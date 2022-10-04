@@ -1,0 +1,69 @@
+<%- include('partials/header') -%>
+
+<!-- Jumbotron -->
+<div class="container">
+  <div class="h-100 p-5 text-bg-dark rounded-3">
+    <h1>Buy & Sell Used Equipment</h1>
+    <p>Browse through affordable alternatives to new equipment. View our detailed listings and buy with confidence!</p>
+    <a href="/listings" class="btn btn-outline-dark" type="button">Buy Equipment</a>
+    <a href="/listings/newListing" class="btn btn-dark" type="button">Sell Equipment</a>
+  </div>
+</div>
+
+<div class="container">
+  <div class="manuLogoContainer d-flex justify-content-between">
+    <a href="#"><img class="manuLogo" src="/imgs/logoBanner/cat_logo.png"></a>
+    <a href="#"><img class="manuLogo" src="/imgs/logoBanner/edco_logo.png"></a>
+    <a href="#"><img class="manuLogo" src="/imgs/logoBanner/John_Deere_logo_logotype.png"></a>
+    <a href="#"><img class="manuLogo" src="/imgs/logoBanner/Komatsu.png"></a>
+    <a href="#"><img class="manuLogo" src="/imgs/logoBanner/Logo-Chicago-Pneumatic.png"></a>
+    <a href="#"><img class="manuLogo" src="/imgs/logoBanner/mitm_logo.png"></a>
+  </div>
+</div>
+
+<!-- Grid Display -->
+<div class="album py-5 bg-light">
+  <div class="container">
+
+    <h2>Latest Listings ...</h2>
+
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+      <% for(var i=0; i<3; i++) {%>
+        <!-- Generate Cards -->
+        <div class="col">
+          <div class="card shadow-sm">
+            <a href="/listings/<%= listings[i]._id%>">
+              <img src="<%= listings[i].image%>" alt="" class="card-img-top" width="100%" height="225">
+            </a>
+
+            <div class="card-body">
+              <h3>
+                <%= listings[i].title%>
+              </h3>
+              <p class="card-text">
+                <%= listings[i].description%>
+              </p>
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="btn-group">
+                  <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
+                  <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+        <% } %>
+
+    </div>
+  </div>
+</div>
+
+<!-- <main class="container">
+    <div class="row justify-content-around mt-5">
+        <a href="/login" class="col-3 btn btn-primary"> Login</a>
+        <a href="/signup" class="col-3 btn btn-primary"> Signup</a>
+    </div>
+</main> -->
+
+<%- include('partials/footer') -%>

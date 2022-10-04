@@ -1,0 +1,42 @@
+<%- include('partials/header') -%>
+
+  <div class="container">
+
+        <div class="mt-5">
+          <h2>Add a Listing</h2>
+          <form action="/listings/" enctype="multipart/form-data" method="POST">
+            <div class="mb-3">
+              <label for="title" class="form-label">Title</label>
+              <input type="text" class="form-control" id="title" name="title">
+            </div>
+            <div class="mb-3">
+              <label for="description" class="form-label">Description</label>
+              <textarea class="form-control" id="description" name="description"></textarea>
+            </div>
+            <div class="mb-3">
+              <label for="imgUpload" class="form-label">Image</label>
+              <input type="file" class="form-control" id="imageUpload" name="file">
+            </div>
+            <div class="mb-3">
+              <label for="price" class="form-label">Price</label>
+              <input type="text" class="form-control" id="price" name="price">
+            </div>
+            <div class="mb-3">
+              <label for="make" class="form-label">Make</label>
+              <input type="text" class="form-control" id="make" name="make">
+            </div>
+            <div class="mb-3">
+              <label for="model" class="form-label">Model</label>
+              <input type="text" class="form-control" id="model" name="model">
+            </div>
+            <div class="mb-3">
+              <label for="year" class="form-label">Year</label>
+              <input type="text" class="form-control" id="year" name="year">
+            </div>
+            <button type="submit" class="btn btn-primary" value="Upload">Submit</button>
+          </form>
+        </div>
+
+  </div>
+
+  <%- include('partials/footer') -%>
