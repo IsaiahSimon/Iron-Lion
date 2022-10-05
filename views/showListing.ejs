@@ -1,4 +1,4 @@
-<%- include('partials/header') -%>
+<%- include('partials/header', {user:user}) -%>
 
 <main>
   <!-- BREADCRUMB -->
@@ -80,8 +80,11 @@
 
               <div class="col-xxl-4 col-lg-4 col-md-5 col-5 d-grid">
                 <!-- button -->
-                <!-- btn --> <button type="button" class="btn btn-primary"><i class="feather-icon icon-shopping-bag me-2"></i>Make
-                  Offer</button>
+                <!-- btn -->
+                <a href="/contact" class="btn btn-primary">
+                  <i class="feather-icon icon-shopping-bag me-2"></i>
+                  Make Offer
+                </a>
               </div>
             </div>
             <!--TODO add a share button -->

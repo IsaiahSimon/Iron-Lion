@@ -3,7 +3,7 @@
 module.exports = {
   getContact: (req, res) => {
     try {
-      res.render("contact.ejs");
+      res.render("contact.ejs", {user: req.user});
     } catch (err) {
       console.log(err);
     }

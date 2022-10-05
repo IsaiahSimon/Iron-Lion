@@ -1,41 +1,95 @@
-<%- include('partials/header') -%>
+<%- include('partials/header', {user:user}) -%>
+  <%if(user) {%>
 
-  <!-- Grid Display -->
-  <div class="album py-5 bg-light">
-    <div class="container">
+    <!-- Display for Logged in users -->
+    <div class="album py-5 bg-light">
+      <div class="container">
+        <!-- Section heading -->
+        <div class="d-flex justify-content-between">
+          <h2>Listings</h2>
+          <span>
+            <a href="listings/newListing" class="btn btn-primary fa fa-plus btn-success">&nbsp;Add listing</a>
+          </span>
+        </div>
+          <span>(Private view)</span>
 
-      <h2>Listings </h2>
-      <a href="listings/newListing" class="btn btn-primary">Add new listing</a>
+        <!-- GRID -->
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+          <!-- Generate Cards -->
+          <% for(var i=0; i<listings.length; i++) {%>
 
+            <div class="col">
+              <!-- CARD -->
+              <div class="card shadow-sm">
+                <!-- CARD TOP -->
+                <a href="/listings/<%= listings[i]._id%>">
+                  <img src="<%= listings[i].image%>" alt="" class="card-img-top" width="100%" height="225">
+                </a>
 
-      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+                <!-- CARD BOTTOM -->
+                <div class="card-body">
+                  <h3><%= listings[i].title%></h3>
+                  <p class="card-text"><%= listings[i].description%></p>
+                  <div class="d-flex justify-content-between align-items-center">
 
-        <% for(var i=0; i<listings.length; i++) {%>
-        <!-- Generate Cards -->
-        <div class="col">
-          <div class="card shadow-sm">
-            <a href="/listings/<%= listings[i]._id%>">
-              <img src="<%= listings[i].image%>" alt="" class="card-img-top" width="100%" height="225">
-            </a>
+                  <!-- User Controls -->
+                  <%if(listings[i].user==user.id){ %>
+                    <div class="btn-group">
+                      <!-- EDIT Button -->
+                      <a href="listings/<%= listings[i]._id%>/edit" class="btn btn-secondary fa fa-edit btn-success"></a>
 
-            <div class="card-body">
-              <h3><%= listings[i].title%></h3>
-              <p class="card-text"><%= listings[i].description%></p>
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
-                  <a href="listings/<%= listings[i]._id%>" class="btn btn-sm btn-success">View</a>
-                  <a href="listings/<%= listings[i]._id%>/edit" class="btn btn-sm btn-outline-secondary">Edit</a>
-                  <a href="listings/<%= listings[i]._id%>" class="btn btn-sm btn-danger">Delete</a>
+                      <!-- DELETE Button -->
+                      <form action="listings/<%= listings[i]._id%>?_method=DELETE" method="POST" class="col-3">
+                        <button class="btn btn-secondary fa fa-trash btn-danger" type="submit"></button>
+                      </form>
+                    </div>
+                  <%}%>
+                  </div>
                 </div>
-                
               </div>
             </div>
-          </div>
+          <% } %>
+
         </div>
-        <% } %>
       </div>
     </div>
-  </div>
 
+  <%} else {%>
+
+    <!-- Display for Public users -->
+    <div class="album py-5 bg-light">
+      <div class="container">
+        <div class="d-flex justify-content-between">
+          <h2>Listings</h2>
+        </div>
+          <span>(Public view)</span>
+
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+
+          <% for(var i=0; i<listings.length; i++) {%>
+            <!-- Generate Cards -->
+            <div class="col">
+              <div class="card shadow-sm">
+                <a href="/listings/<%= listings[i]._id%>">
+                  <img src="<%= listings[i].image%>" alt="" class="card-img-top" width="100%" height="225">
+                </a>
+
+                <div class="card-body">
+                  <h3>
+                    <%= listings[i].title%>
+                  </h3>
+                  <p class="card-text">
+                    <%= listings[i].description%>
+                  </p>
+                </div>
+              </div>
+            </div>
+          <% } %>
+
+        </div>
+      </div>
+    </div>
+
+  <%}%>
 
 <%- include('partials/footer') -%>

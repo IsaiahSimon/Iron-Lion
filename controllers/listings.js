@@ -6,7 +6,7 @@ module.exports = {
   //TODO move getAccount to auth controller
   getAccount: async (req, res) => {
     try {
-      res.render("account.ejs")
+      res.render("account.ejs", {user: req.user})
     } catch (err) {
       console.log(err);
     }
@@ -14,7 +14,8 @@ module.exports = {
   getListings: async (req, res) => {
     try {
       const foundListings = await Listing.find().sort({ createdAt: "desc" }).lean();
-      res.render("listings.ejs", { listings: foundListings });
+      const foundListing = await Listing.findById(req.params.id);
+      res.render("listings.ejs", { listings: foundListings, user: req.user, listing: foundListing });
     } catch (err) {
       console.log(err);
       s;
@@ -22,7 +23,7 @@ module.exports = {
   },
   showNewListingForm: (req, res) => {
     try {
-      res.render("newListing.ejs");
+      res.render("newListing.ejs", {user: req.user});
     } catch (err) {
       console.log(err);
     }
@@ -54,7 +55,7 @@ module.exports = {
     try {
       const foundListing = await Listing.findById(req.params.id);
       const foundListings = await Listing.find().sort({ createdAt: "desc" }).lean();
-      res.render("showListing.ejs", { listing: foundListing, listings: foundListings });
+      res.render("showListing.ejs", { listing: foundListing, user:req.user, listings: foundListings });
     } catch (err) {
       console.log(err);
     }
@@ -62,7 +63,7 @@ module.exports = {
   showEditListingForm: async (req, res) => {
     try {
       const foundListing = await Listing.findById(req.params.id);
-      res.render("editListing.ejs", { listing: foundListing });
+      res.render("editListing.ejs", { listing: foundListing, user: req.user });
     } catch (err) {
       console.log(err);
     }

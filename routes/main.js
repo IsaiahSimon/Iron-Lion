@@ -16,7 +16,7 @@ router.get("/account", ensureAuth, postsController.getAccount);
 
 //@desc   Show user feed
 //@Route  GET /feed
-router.get("/listings", ensureAuth, postsController.getListings);
+router.get("/listings", postsController.getListings);
 
 //@desc   show login page
 //@Route  GET /login/
