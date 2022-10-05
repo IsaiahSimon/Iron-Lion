@@ -1,7 +1,7 @@
 {
-  "name": "binary-upload-boom",
+  "name": "iron-lion",
   "version": "1.0.0",
-  "description": "100Devs Social Network",
+  "description": "Used Equipment Marketplace",
   "main": "server.js",
   "scripts": {
     "start": "cross-env NODE_ENV=production node server.js",
